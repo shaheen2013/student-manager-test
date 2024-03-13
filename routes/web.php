@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [StudentController::class, 'index'])->name('index');
+Route::post('/', [StudentController::class, 'store']);
+Route::delete('/{id}', [StudentController::class, 'destroy']);
+Route::inertia('create', 'Students/Create');

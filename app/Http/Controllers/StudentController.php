@@ -7,6 +7,7 @@ use App\Actions\DeleteStudentAction;
 use App\Actions\FetchStudentsAction;
 use App\DataTransferObjects\StudentDTO;
 use Illuminate\Http\Request;
+use \Inertia\Inertia;
 
 class StudentController extends Controller
 {
@@ -27,7 +28,10 @@ class StudentController extends Controller
     public function index()
     {
         $students = $this->fetchStudentsAction->execute();
-        return response()->json($students);
+
+        return Inertia::render('Students/Index', [
+            'students' => $students,
+        ]);
     }
 
     public function store(Request $request)
@@ -38,14 +42,14 @@ class StudentController extends Controller
         ]);
 
         $studentDTO = new StudentDTO($data['username'], $data['email']);
-        $newStudent = $this->createStudentAction->execute($studentDTO);
+        $this->createStudentAction->execute($studentDTO);
 
-        return response()->json($newStudent, 201);
+        return to_route('index');
     }
 
     public function destroy($id)
     {
         $this->deleteStudentAction->execute($id);
-        return response()->json(['message' => 'Student deleted successfully']);
+        return to_route('index');
     }
 }
