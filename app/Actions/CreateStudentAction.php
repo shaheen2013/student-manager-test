@@ -14,7 +14,7 @@ class CreateStudentAction
         $this->studentService = $studentService;
     }
 
-    public function execute(StudentDTO $studentDTO)
+    public function execute(StudentDTO $studentDTO): Student
     {
         return $this->studentService->createStudent($studentDTO);
     }

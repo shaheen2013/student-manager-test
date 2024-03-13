@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTransferObjects\StudentDTO;
 use App\Actions\CreateStudentAction;
 use App\Actions\DeleteStudentAction;
 use App\Actions\FetchStudentsAction;
-use App\DataTransferObjects\StudentDTO;
 use Illuminate\Http\Request;
 use \Inertia\Inertia;
 

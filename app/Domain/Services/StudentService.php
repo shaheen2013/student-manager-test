@@ -4,6 +4,8 @@ namespace App\Domain\Services;
 
 use App\Domain\Repositories\StudentRepositoryInterface;
 use App\DataTransferObjects\StudentDTO;
+use App\Domain\Models\Student;
+
 
 class StudentService implements StudentServiceInterface
 {
@@ -14,7 +16,7 @@ class StudentService implements StudentServiceInterface
         $this->studentRepository = $studentRepository;
     }
 
-    public function createStudent(StudentDTO $studentDTO)
+    public function createStudent(StudentDTO $studentDTO): Student // Update return type
     {
         return $this->studentRepository->create([
             'username' => $studentDTO->username,
