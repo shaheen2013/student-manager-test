@@ -3,24 +3,25 @@
 namespace Tests\Domain\Actions;
 
 use Tests\TestCase;
-use App\Domain\Actions\DeleteStudentAction;
-use App\Domain\Repositories\StudentRepositoryInterface;
+use App\Actions\DeleteStudentAction;
+use App\Domain\Services\StudentServiceInterface; // Import StudentServiceInterface
+use App\Domain\Models\Student;
 
 class DeleteStudentActionTest extends TestCase
 {
     public function test_delete_student_action()
     {
-        // Mock StudentRepositoryInterface
-        $studentRepositoryMock = $this->createMock(StudentRepositoryInterface::class);
+        // Mock StudentServiceInterface
+        $studentServiceMock = $this->createMock(StudentServiceInterface::class);
         
         // Set up expectations
-        $studentRepositoryMock->expects($this->once())
-            ->method('delete')
+        $studentServiceMock->expects($this->once())
+            ->method('deleteStudent')
             ->with(1)
             ->willReturn(true);
 
-        // Create instance of DeleteStudentAction
-        $deleteStudentAction = new DeleteStudentAction($studentRepositoryMock);
+        // Create instance of DeleteStudentAction with the correct dependency
+        $deleteStudentAction = new DeleteStudentAction($studentServiceMock);
         
         // Execute the action
         $result = $deleteStudentAction->execute(1);
