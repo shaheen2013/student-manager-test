@@ -6,7 +6,7 @@ use App\Domain\Models\Student;
 
 interface StudentRepositoryInterface
 {
-    public function create(array $data): Student;
+    public function create(array $data): Mixed;
     public function delete(int $id): bool;
     public function getAll(): array;
 }

@@ -7,7 +7,7 @@ use App\Domain\Models\Student;
 
 interface StudentServiceInterface
 {
-    public function createStudent(StudentDTO $studentDTO): Student;
+    public function createStudent(StudentDTO $studentDTO): Mixed;
     public function deleteStudent(int $studentId);
     public function getAllStudents();
 }
