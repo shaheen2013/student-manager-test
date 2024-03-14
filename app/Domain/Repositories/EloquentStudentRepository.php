@@ -6,7 +6,7 @@ use App\Domain\Models\Student;
 
 class EloquentStudentRepository implements StudentRepositoryInterface
 {
-    public function create(array $data): Student
+    public function create(array $data): Mixed
     {
         return Student::create($data);
     }

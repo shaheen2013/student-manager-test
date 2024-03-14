@@ -16,7 +16,7 @@ class StudentService implements StudentServiceInterface
         $this->studentRepository = $studentRepository;
     }
 
-    public function createStudent(StudentDTO $studentDTO): Student // Update return type
+    public function createStudent(StudentDTO $studentDTO): Mixed // Update return type
     {
         return $this->studentRepository->create([
             'username' => $studentDTO->username,
